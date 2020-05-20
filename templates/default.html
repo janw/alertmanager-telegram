@@ -1,0 +1,15 @@
+{% if status == 'firing' -%}
+🔥
+{%- else -%}
+✅
+{%- endif -%}
+<b>{{ status | upper }}: {{commonLabels.alertname}} ({{ alert_count }})</b>
+{%- for alert in alerts %}
+{{ alert.annotations.summary|e }}
+{%- for label, value in alert.labels.items() %}
+<b>{{ label }}:</b> {{value}}
+{%- endfor %}
+{% endfor -%}
+{% if ellipsis %}
+… (list truncated)
+{% endif %}
