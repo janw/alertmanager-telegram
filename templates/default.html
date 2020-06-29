@@ -3,13 +3,23 @@
 {%- else -%}
 ✅
 {%- endif -%}
-<b>{{ status | upper }}: {{commonLabels.alertname}} ({{ alert_count }})</b>
-{%- for alert in alerts %}
-{{ alert.annotations.summary|e }}
+<b> {{ status | title }}: {{commonLabels.alertname}} ({{ alerts | length }})</b>
+{%- if status == 'firing' and commonLabels.severity == "critical" %} ‼️
+{%- endif %}
+
+{{ commonAnnotations.summary|e }}
+{% for label, value in commonLabels.items() if label != "alertname" %}
+<b>{{ label }}:</b> {{value}}
+{%- endfor %}
+
+{% for alert in alerts %}
+{%- for label, value in alert.annotations.items() %}
+<b>{{ label }}:</b> {{value}}
+{%- endfor %}
 {%- for label, value in alert.labels.items() %}
 <b>{{ label }}:</b> {{value}}
 {%- endfor %}
 {% endfor -%}
-{% if ellipsis %}
+{% if ellipsis or truncatedAlerts == 1 %}
 … (list truncated)
 {% endif %}
