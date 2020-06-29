@@ -1,13 +1,16 @@
 {% if status == 'firing' -%}
-🔥
+👩‍🚒
 {%- else -%}
-✅
+🍻
 {%- endif -%}
 <b> {{ status | title }}: {{commonLabels.alertname}} ({{ alerts | length }})</b>
 {%- if status == 'firing' and commonLabels.severity == "critical" %} ‼️
 {%- endif %}
 
 {{ commonAnnotations.summary|e }}
+{% for label, value in commonAnnotations.items() if label != "summary" %}
+<b>{{ label }}:</b> {{value}}
+{%- endfor %}
 {% for label, value in commonLabels.items() if label != "alertname" %}
 <b>{{ label }}:</b> {{value}}
 {%- endfor %}
