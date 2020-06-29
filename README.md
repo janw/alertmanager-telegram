@@ -29,3 +29,17 @@ receivers:
       - url: "http://alertmanager-telegram:8080/alerts"
         send_resolved: true
 ```
+
+## Templating
+
+A custom alert template can be added by overriding `/templates/default.html`:
+
+```bash
+docker run \
+    --name alertmanager-telegram \
+    -e TELEGRAM_CHAT_ID="..." \
+    -e TELEGRAM_TOKEN="..." \
+    -v /path/to/my/template.html:/templates/default.html \
+    -p 8080:8080 \
+    janwh/alertmanager-telegram
+```
