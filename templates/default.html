@@ -12,7 +12,7 @@
 <b>{{ label }}:</b> {{value}}
 {%- endfor %}
 {% for label, value in commonLabels.items() if label != "alertname" %}
-<b>{{ label }}:</b> {{value}}
+<b>{{ label }}:</b> <code>{{value}}</code>
 {%- endfor %}
 
 {% for alert in alerts %}
@@ -20,9 +20,13 @@
 <b>{{ label }}:</b> {{value}}
 {%- endfor %}
 {%- for label, value in alert.labels.items() %}
-<b>{{ label }}:</b> {{value}}
-{%- endfor %}
+<b>{{ label }}:</b> <code>{{value}}</code>
+{%- endfor -%}
+{%- if loop.last -%}
+<a href="{{ alert.generatorURL }}">Go to source</a>
+{% endif %}
 {% endfor -%}
 {% if ellipsis or truncatedAlerts == 1 %}
 … (list truncated)
-{% endif %}
+{% endif -%}
+<a href="{{ externalURL }}">Go to Alertmanager</a>
