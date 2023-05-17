@@ -1,4 +1,6 @@
-flask==1.1.2
-gunicorn==20.0.4
-logzero==1.5.0
+flask>=1.1.2,<2
+gunicorn
+logzero>=1.5.0,<2
 python-telegram-bot==12.7
+
+markupsafe==2.0.1
