@@ -17,7 +17,7 @@ docker run \
     -e TELEGRAM_CHAT_ID="..." \
     -e TELEGRAM_TOKEN="..." \
     -p 8080:8080 \
-    janwh/alertmanager-telegram
+    ghcr.io/janw/alertmanager-telegram
 ```
 
 Finally, in the Alertmanager config, add the relay as a webhook receiver:
