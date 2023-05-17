@@ -10,5 +10,3 @@ on:
 jobs:
   docker:
     uses: janw/workflows/.github/workflows/docker.yaml@main
-    with:
-      build-platforms: linux/amd64
