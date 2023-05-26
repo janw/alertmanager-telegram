@@ -1,7 +1,4 @@
-from flask import Blueprint
-from flask import jsonify
-from flask import request
-from flask import current_app
+from flask import Blueprint, current_app, jsonify, request
 
 from alertmanager_telegram.logging import logger
 from alertmanager_telegram.templating import render

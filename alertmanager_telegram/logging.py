@@ -1,6 +1,7 @@
-import os
-import logzero
 import logging
+import os
+
+import logzero
 from gunicorn.glogging import Logger
 
 _log_level = os.environ.get("LOG_LEVEL", "info").upper()

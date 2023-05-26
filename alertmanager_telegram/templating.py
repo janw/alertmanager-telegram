@@ -9,7 +9,7 @@ def render(content):
 
     common_labels = content.get("commonLabels", {})
     common_annotations = content.get("commonAnnotations", {})
-    for idx, alert in enumerate(alerts):
+    for alert in alerts:
         if "labels" in alert:
             labels = alert["labels"]
             for label in common_labels.keys():
